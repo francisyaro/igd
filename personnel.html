@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Institut Général Tiémoko Marc Garango</title>
+
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+  padding-top: 0;
+}
+
+    :root {
+      --igd-red: #E63087;
+      --igd-pink: #e91e63;
+      --igd-green: #7CC242; /* couleur verte ajoutée */
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--igd-red);
+      transition: all 0.4s ease;
+    }
+    .navbar.scrolled {
+      background: #E63087 !important;
+      backdrop-filter: blur(6px);
+    }
+
+    .navbar-brand img {
+      height: 50px;
+      width: auto;
+    }
+
+    /* Bloc du logo avec fond blanc */
+.logo-box {
+  background: #ffffff;
+  padding: 5px 15px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+ 
+    .navbar-nav .nav-link {
+      color: white !important;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0%;
+      height: 2px;
+      background: white;
+      transition: width 0.3s;
+    }
+    .navbar-nav .nav-link:hover::after {
+      width: 40%;
+    }
+
+    /* Dropdown on hover */
+    .dropdown:hover .dropdown-menu {
+      display: block;
+      margin-top: 0;
+      animation: dropdownFade 0.3s ease forwards;
+    }
+    @keyframes dropdownFade {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Hero Carousel */
+    .carousel-item {
+      height: 75vh;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .carousel-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+    }
+    .carousel-caption {
+      z-index: 10;
+    }
+    .carousel-caption h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+
+    /* Section titles */
+    .section-title {
+      border-left: 4px solid var(--igd-green);
+      padding-left: 10px;
+      margin-bottom: 2rem;
+      font-weight: 700; /* plus gras */
+      color: var(--igd-green);
+    }
+    /* Programmes */
+    .program-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .program-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .program-icon {
+      font-size: 3rem;
+      color: var(--igd-red);
+      margin-bottom: 15px;
+      transition: transform 0.3s;
+    }
+    .program-card:hover .program-icon {
+      transform: scale(1.1);
+      color: var(--igd-pink);
+    }
+
+    /* Formulaire d’inscription */
+    .inscription {
+      background-color: #f8f9fa;
+      padding: 60px 0;
+    }
+    .inscription .card {
+      border: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      height: 100%;
+    }
+    .btn-igd {
+      background: var(--igd-red);
+      color: white;
+      transition: background 0.3s;
+    }
+    .btn-igd:hover {
+      background: var(--igd-pink);
+    }
+
+    /* Actualités */
+    .news-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+      border: none;
+      height: 100%;
+    }
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .news-card img {
+      transition: transform 0.4s;
+    }
+    .news-card:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Partenaires */
+    .partners {
+      background: #f8f9fa;
+      padding: 60px 0;
+    }
+    .partner-logo {
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: all 0.3s;
+      max-height: 70px;
+    }
+    .partner-logo:hover {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 50px 0;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--igd-pink);
+    }
+    footer h5 {
+  color: white;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+footer iframe {
+  border-radius: 8px;
+  width: 100%;
+  height: 200px;
+}
+
+footer i {
+  color: white;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+footer i:hover {
+  color: var(--igd-green);
+}
+
+    .social-icons a {
+  font-size: 1.2rem;
+  transition: opacity 0.3s;
+}
+.social-icons a:hover {
+  opacity: 0.7;
+}
+.btn-igd-green {
+  background-color: #7CC242;
+  color: white;
+  border: none;
+}
+.btn-igd-green:hover {
+  background-color: #18864e;
+  color: white;
+}
+.publication-card i {
+  font-size: 3.2rem; /* taille augmentée */
+  color: var(--igd-green); /* vert IGD ou rouge si tu préfères */
+  margin-bottom: 15px;
+}
+.publication-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  padding: 20px;
+  transition: all 0.3s;
+  height: 100%;
+}
+.publication-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+/* Section Partenaires – défilement */
+.partners-carousel {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.partners-track {
+  display: inline-flex;
+  align-items: center;
+  animation: slide 25s linear infinite;
+}
+
+.partner-logo {
+  height: 70px;
+  margin: 0 40px;
+  filter: none;     /* pas de sépia, pas de gris */
+  opacity: 1;       /* couleur normale */
+  transition: all 0.3s;
+}
+
+.partner-logo:hover {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.page-hero{
+  padding: 35px 0 25px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+.page-title{
+  font-weight: 800;
+  color: #1c9c5a; /* vert titres */
+  letter-spacing: -0.3px;
+}
+.breadcrumb-link{
+  color: #E63087;
+  text-decoration: none;
+}
+.breadcrumb-link:hover{ text-decoration: underline; }
+.page-actions .btn{ white-space: nowrap; }
+.card-soft{
+  border: 1px solid #e9e9e9;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.value-card{
+  border: 1px solid #e9e9e9;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  transition: all .25s ease;
+}
+
+.value-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+}
+
+.value-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(230,48,135,0.12);
+  color: var(--igd-red);
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.value-title{
+  font-weight: 800;
+  color: #222;
+}
+
+.value-sub{
+  color: #6c757d;
+  font-size: 0.95rem;
+}
+
+/* Mission/Vision badges */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid #eee;
+  background: #fff;
+  font-weight: 600;
+  color: #444;
+}
+.pill i { color: var(--igd-red); }
+
+/* Cartes valeurs (horizontales & responsives) */
+.value-card{
+  border: 1px solid #e9e9e9;
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  transition: all .25s ease;
+  height: 100%;
+}
+.value-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+}
+.value-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(230,48,135,0.12);
+  color: var(--igd-red);
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+.value-title{ font-weight: 800; color: #222; margin-bottom: 4px; }
+.value-sub{ color: #6c757d; font-size: 0.95rem; margin-bottom: 0; }
+
+/* Stat cards */
+.stat-icon{
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(230,48,135,0.12);
+  color: var(--igd-red);
+  font-size: 1.25rem;
+  margin: 0 auto 10px;
+}
+.stat-number{ font-weight: 900; font-size: 1.8rem; margin-bottom: 0; }
+
+/* Cards axes */
+.axis-card{
+  border: 1px solid #e9e9e9;
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  height: 100%;
+  transition: all .25s ease;
+}
+.axis-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+}
+.axis-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:999px;
+  background: rgba(124,194,66,0.15);
+  color: var(--igd-green);
+  font-weight: 800;
+  font-size: .9rem;
+}
+.axis-badge i{ color: var(--igd-green); }
+
+/* Profil */
+.profile-photo{
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.profile-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:999px;
+  background: rgba(124,194,66,0.15);
+  color: var(--igd-green);
+  font-weight: 800;
+  font-size: .9rem;
+}
+.profile-badge i{ color: var(--igd-green); }
+
+/* Cartes (valeurs/points clés) */
+.value-card{
+  border: 1px solid #e9e9e9;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  transition: all .25s ease;
+  height: 100%;
+}
+.value-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+}
+.value-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(230,48,135,0.12);
+  color: var(--igd-red);
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+.value-title{ font-weight: 800; color: #222; margin-bottom: 4px; }
+.value-sub{ color: #6c757d; font-size: 0.95rem; margin-bottom: 0; }
+
+/* Stat cards */
+.stat-icon{
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(230,48,135,0.12);
+  color: var(--igd-red);
+  font-size: 1.25rem;
+  margin: 0 auto 10px;
+}
+.stat-number{ font-weight: 900; font-size: 1.8rem; margin-bottom: 0; }
+
+/* Timeline */
+.timeline{
+  position: relative;
+  padding-left: 26px;
+  margin: 0;
+}
+.timeline::before{
+  content:"";
+  position:absolute;
+  left: 10px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: #e7e7e7;
+}
+.timeline-item{
+  position: relative;
+  padding: 14px 0 14px 18px;
+}
+.timeline-dot{
+  position:absolute;
+  left: 2px;
+  top: 18px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--igd-green);
+  box-shadow: 0 0 0 4px rgba(124,194,66,0.18);
+}
+.timeline-date{
+  display: inline-block;
+  font-weight: 800;
+  color: var(--igd-green);
+  margin-bottom: 6px;
+}
+
+/* List clean */
+.list-check{
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+}
+.list-check li{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  padding: 7px 0;
+  color:#555;
+}
+.list-check i{
+  color: var(--igd-green);
+  margin-top: 2px;
+}
+
+  </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand logo-box" href="/refonte/">
+      <img src="images/logo-IGD-Site-web-Ajuste.png" alt="Logo IGD">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/refonte/">Accueil</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#">L’Institut</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">À propos</a></li>
+            <li><a class="dropdown-item" href="#">Missions et Objectifs</a></li>
+            <li><a class="dropdown-item" href="#">Personnel</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#">Programmes</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Programmes en cours</a></li>
+            <li><a class="dropdown-item" href="#">Projets terminés</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="#">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Photothèque</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Vidéothèque</a></li>
+        <li class="nav-item"><a class="nav-link" href="refonte/actualites.html">Actualité</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        <li class="nav-item d-flex align-items-center ms-3 social-icons">
+  
+</li>
+
+      </ul>
+    </div>
+  </div>
+
+</nav>
+
+<!-- HERO INTERNE -->
+<section class="page-hero">
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+      <div>
+        <h1 class="page-title mb-2">Personnel</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/refonte/" class="breadcrumb-link">Personnel</a></li>
+            <li class="breadcrumb-item active" aria-current="page">À propos</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="page-actions d-flex gap-2">
+        <a href="programmes.html" class="btn btn-igd-green"><i class="bi bi-grid-3x3-gap"></i> Découvrir nos programmes</a>
+        <a href="contact.html" class="btn btn-igd-outline"><i class="bi bi-envelope"></i> Nous contacter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="container py-5">
+
+  <!-- Directeur exécutif -->
+  <div class="row g-4 align-items-start">
+    <!-- Photo (à remplacer si tu as une vraie image) -->
+    <div class="col-lg-4">
+      <div class="card-soft p-3">
+        <img src="images/Pr-Abdoul-Karim-SAIDOU-2.jpg" alt="Pr Abdoul Karim SAIDOU" class="profile-photo">
+        <div class="mt-3 d-flex flex-wrap gap-2">
+          <span class="profile-badge"><i class="bi bi-person-badge"></i> Directeur exécutif</span>
+          <span class="profile-badge"><i class="bi bi-calendar2-check"></i> Depuis 2019</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bio -->
+    <div class="col-lg-8">
+      <div class="card-soft p-4">
+        <h2 class="section-title">Le directeur exécutif de l’IGD</h2>
+
+        <h5 class="fw-bold mb-2">Pr Abdoul Karim SAIDOU</h5>
+        <p class="text-muted mb-3">
+          Agrégé de science politique et Maître de conférences (CAMES) – Université Thomas Sankara (Burkina Faso)
+        </p>
+
+        <p class="mb-3">
+          Depuis 2019, le Directeur exécutif de l’IGD est le <strong>Pr Abdoul Karim SAIDOU</strong>. Il est responsable scientifique
+          du <strong>Master recherche en science politique</strong> et chef de l’équipe de recherche <strong>sociologie politique et action publique</strong>
+          au sein du Laboratoire de droit et de science politique de l’Université Thomas Sankara.
+        </p>
+
+        <p class="mb-3">
+          Outre l’Université Thomas Sankara, il est enseignant associé/vacataire dans plusieurs universités :
+          Université Joseph-Ki Zerbo (Burkina Faso), Université Abdou Moumouni de Niamey (Niger) et Université de Lomé (Togo).
+        </p>
+
+        <p class="mb-0">
+          Diplômé de l’Ahmadu Bello University (Nigeria – BSc Science politique) et de l’Université Thomas Sankara (DEA & thèse),
+          il a soutenu en 2014 une thèse sur les trajectoires de reconversion d’ex-chefs rebelles touaregs et toubou dans les partis politiques au Niger.
+          Ses travaux portent sur les politiques publiques de sécurité, l’État et la démocratie au Sahel (Niger, Mali, Burkina Faso).
+        </p>
+      </div>
+
+      <!-- Points clés (cartes horizontales) -->
+      <div class="row g-3 mt-3">
+        <div class="col-md-4">
+          <div class="value-card">
+            <div class="value-icon"><i class="bi bi-mortarboard"></i></div>
+            <div class="value-title">Enseignement</div>
+            <p class="value-sub">Universités : UTS, UJKZ, Niamey, Lomé</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="value-card">
+            <div class="value-icon"><i class="bi bi-search"></i></div>
+            <div class="value-title">Recherche</div>
+            <p class="value-sub">Sécurité, État, démocratie au Sahel</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="value-card">
+            <div class="value-icon"><i class="bi bi-globe2"></i></div>
+            <div class="value-title">Réseaux</div>
+            <p class="value-sub">GRIP (Bruxelles) • V-Dem (Gothenburg)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Parcours IGD + Timeline -->
+      <div class="card-soft p-4 mt-3">
+        <h2 class="section-title">Parcours au sein de l’IGD</h2>
+        <p class="mb-3">
+          Le Pr Saidou travaille à l’IGD depuis 2009. Il a notamment été coordonnateur de projets structurants et continue de contribuer
+          à la consolidation des programmes de renforcement des capacités.
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-date">2009 – 2011</div>
+            <div class="text-muted-2">Coordonnateur du projet « École des cadres des partis politiques »</div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-date">2012 – 2022</div>
+            <div class="text-muted-2">Coordonnateur du programme « Program for Young Politicians in Africa (PYPA) »</div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-date">Depuis 2019</div>
+            <div class="text-muted-2">Directeur exécutif de l’IGD</div>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-date">Depuis 2015</div>
+            <div class="text-muted-2">Coordonnateur régional (Afrique de l’Ouest) – Variety of Democracy (V-Dem)</div>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <ul class="list-check">
+          <li><i class="bi bi-check-circle-fill"></i> Chercheur associé au <strong>GRIP</strong> (Bruxelles)</li>
+          <li><i class="bi bi-check-circle-fill"></i> Responsable scientifique du <strong>Master recherche</strong> en science politique</li>
+          <li><i class="bi bi-check-circle-fill"></i> Chef d’équipe : <strong>sociologie politique & action publique</strong></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Stats équipe -->
+  <div class="mt-5">
+    <h2 class="section-title">Le staff technique de l’IGD</h2>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card-soft p-4 text-center h-100">
+          <div class="stat-icon"><i class="bi bi-people"></i></div>
+          <p class="stat-number">14</p>
+          <p class="text-muted mb-0">Personnes dans l’équipe</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-soft p-4 text-center h-100">
+          <div class="stat-icon"><i class="bi bi-gender-female"></i></div>
+          <p class="stat-number">8</p>
+          <p class="text-muted mb-0">Femmes dans l’équipe</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-soft p-4 text-center h-100">
+          <div class="stat-icon"><i class="bi bi-person-lines-fill"></i></div>
+          <p class="stat-number">~20</p>
+          <p class="text-muted mb-0">Formateurs / experts (répertoire)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Organisation & départements -->
+  <div class="row g-4 mt-4">
+    <div class="col-lg-6">
+      <div class="card-soft p-4 h-100">
+        <h2 class="section-title">Organisation</h2>
+        <p class="mb-3">
+          L’IGD est administré par un <strong>Conseil d’administration (CA)</strong> qui définit les orientations stratégiques de l’Institut,
+          et dirigé par un <strong>Directeur exécutif</strong>. Le pilotage managérial repose sur une structuration légère, avec le Directeur
+          exécutif au centre, appuyé par des départements techniques et financiers.
+        </p>
+        <p class="mb-0">
+          Le Directeur exécutif coordonne et met en œuvre les activités conformément aux orientations du CA.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card-soft p-4 h-100">
+        <h2 class="section-title">Équipe & appuis</h2>
+        <p class="mb-3">
+          L’IGD dispose d’une équipe technique en charge des finances et de l’administration, de la coordination des projets,
+          du suivi-évaluation et de la planification, ainsi que des assistants de projets.
+        </p>
+        <p class="mb-0">
+          L’Institut fait également appel à l’expertise externe lorsque cela est pertinent et efficient, en s’appuyant sur un répertoire
+          d’experts issus de plusieurs pays d’Afrique de l’Ouest.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Départements (cards) -->
+  <div class="mt-4">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-cash-coin"></i></div>
+          <div class="value-title">Finances</div>
+          <p class="value-sub">Gestion budgétaire, comptabilité, reporting</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-kanban"></i></div>
+          <div class="value-title">Projets</div>
+          <p class="value-sub">Coordination, mise en œuvre, partenariats</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-graph-up-arrow"></i></div>
+          <div class="value-title">Suivi-évaluation</div>
+          <p class="value-sub">Indicateurs, résultats, apprentissage</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-calendar2-week"></i></div>
+          <div class="value-title">Planification</div>
+          <p class="value-sub">Programmation, cohérence et priorisation</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="contact.html" class="btn btn-igd-green"><i class="bi bi-envelope"></i> Contacter l’IGD</a>
+      <a href="a-propos.html" class="btn btn-igd-outline ms-2"><i class="bi bi-info-circle"></i> En savoir plus</a>
+    </div>
+  </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container py-5">
+    <div class="row">
+
+      <!-- Colonne 1 : Présentation -->
+      <div class="col-md-4 mb-4">
+        <h5>L’Institut</h5>
+        <p>L’IGD est un organisme non gouvernemental burkinabè, spécialisé dans la gouvernance, le droit et le développement.</p>
+      </div>
+
+      <!-- Colonne 2 : Contacts -->
+      <div class="col-md-4 mb-4">
+        <h5>Contact</h5>
+        <p>
+          Cité Azimmo – Ouaga 2000<br>
+          (+226) 25 37 50 82 / 51 57 58 58<br>
+          <a href="mailto:institutgarango@igd.bf">institutgarango@igd.bf</a>
+        </p>
+      </div>
+
+      <!-- Colonne 3 : Carte Google Map -->
+      <div class="col-md-4 mb-4">
+        <h5>Localisation</h5>
+        <div class="footer-map">
+          <iframe
+            src="https://www.google.com/maps?q=Cité%20Azimmo%20Ouaga%202000%20Ouagadougou&output=embed"
+            width="100%"
+            height="200"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <!-- Bas de page -->
+    <div class="row">
+      <div class="col-12 text-center">
+        <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-youtube"></i></a>
+
+        <p class="mt-3 mb-0">&copy; 2025 IGD – Tous droits réservés</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Effet navbar au scroll
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Égaliser les hauteurs
+  function equalizeHeights(selector) {
+    const elements = document.querySelectorAll(selector);
+    let max = 0;
+    elements.forEach(el => {
+      el.style.height = "auto";
+      if (el.offsetHeight > max) max = el.offsetHeight;
+    });
+    elements.forEach(el => el.style.height = max + "px");
+  }
+
+  window.addEventListener('load', () => {
+    equalizeHeights('.news-card');
+    equalizeHeights('.inscription .card');
+  });
+  window.addEventListener('resize', () => {
+    equalizeHeights('.news-card');
+    equalizeHeights('.inscription .card');
+  });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const navbar = document.querySelector('.navbar');
+  const navbarHeight = navbar.offsetHeight;
+  document.body.style.paddingTop = navbarHeight + 'px';
+});
+</script>
+
+</body>
+</html>

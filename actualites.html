@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualités – Institut Général Tiémoko Marc Garango</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+  padding-top: 0;
+}
+
+        :root {
+      --igd-red: #E63087;
+      --igd-pink: #e91e63;
+      --igd-green: #7CC242; /* couleur verte ajoutée */
+    }
+
+   /* Navbar */
+    .navbar {
+      background: var(--igd-red);
+      transition: all 0.4s ease;
+    }
+    .navbar.scrolled {
+      background: #E63087 !important;
+      backdrop-filter: blur(6px);
+    }
+
+    .navbar-brand img {
+      height: 50px;
+      width: auto;
+    }
+
+    /* Bloc du logo avec fond blanc */
+.logo-box {
+  background: #ffffff;
+  padding: 5px 15px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+
+    .navbar-nav .nav-link {
+      color: white !important;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .navbar-nav .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0%;
+      height: 2px;
+      background: white;
+      transition: width 0.3s;
+    }
+    .navbar-nav .nav-link:hover::after {
+      width: 40%;
+    }
+
+    /* Dropdown on hover */
+    .dropdown:hover .dropdown-menu {
+      display: block;
+      margin-top: 0;
+      animation: dropdownFade 0.3s ease forwards;
+    }
+    @keyframes dropdownFade {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Hero Carousel */
+    .carousel-item {
+      height: 75vh;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .carousel-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+    }
+    .carousel-caption {
+      z-index: 10;
+    }
+    .carousel-caption h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+
+    /* Section titles */
+    .section-title {
+      border-left: 4px solid var(--igd-green);
+      padding-left: 10px;
+      margin-bottom: 2rem;
+      font-weight: 700; /* plus gras */
+      color: var(--igd-green);
+    }
+    /* Programmes */
+    .program-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .program-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .program-icon {
+      font-size: 3rem;
+      color: var(--igd-red);
+      margin-bottom: 15px;
+      transition: transform 0.3s;
+    }
+    .program-card:hover .program-icon {
+      transform: scale(1.1);
+      color: var(--igd-pink);
+    }
+
+    /* Formulaire d’inscription */
+    .inscription {
+      background-color: #f8f9fa;
+      padding: 60px 0;
+    }
+    .inscription .card {
+      border: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      height: 100%;
+    }
+    .btn-igd {
+      background: var(--igd-red);
+      color: white;
+      transition: background 0.3s;
+    }
+    .btn-igd:hover {
+      background: var(--igd-pink);
+    }
+
+    .section-title {
+      border-left: 4px solid var(--igd-pink);
+      padding-left: 10px;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .news-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+      transition: all 0.3s;
+      height: 100%;
+      overflow: hidden;
+    }
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .news-card img {
+      height: 200px;
+      object-fit: cover;
+    }
+
+ /* Footer */
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 50px 0;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--igd-pink);
+    }
+    .social-icons a {
+  font-size: 1.2rem;
+  transition: opacity 0.3s;
+}
+.social-icons a:hover {
+  opacity: 0.7;
+}
+.btn-igd-green {
+  background-color: #1c9c5a;
+  color: white;
+  border: none;
+}
+.btn-igd-green:hover {
+  background-color: #18864e;
+  color: white;
+}
+    /* Footer */
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 50px 0;
+    }
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--igd-pink);
+    }
+    footer h5 {
+  color: white;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+footer iframe {
+  border-radius: 8px;
+  width: 100%;
+  height: 200px;
+}
+
+footer i {
+  color: white;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+footer i:hover {
+  color: var(--igd-green);
+}
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand logo-box" href="/refonte/">
+      <img src="images/logo-IGD-Site-web-Ajuste.png" alt="Logo IGD">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/refonte/">Accueil</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#">L’Institut</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">À propos</a></li>
+            <li><a class="dropdown-item" href="#">Missions et Objectifs</a></li>
+            <li><a class="dropdown-item" href="#">Personnel</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#">Programmes</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Programmes en cours</a></li>
+            <li><a class="dropdown-item" href="#">Projets terminés</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="#">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Photothèque</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Vidéothèque</a></li>
+        <li class="nav-item"><a class="nav-link" href="refonte/actualites.html">Actualité</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        <li class="nav-item d-flex align-items-center ms-3 social-icons">
+  
+</li>
+
+      </ul>
+    </div>
+  </div>
+
+</nav>
+
+<!-- Contenu -->
+<section class="container py-5">
+  <h2 class="section-title">Toutes les actualités</h2>
+
+  <!-- Barre de recherche -->
+  <div class="mb-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Rechercher une actualité...">
+      <button class="btn btn-danger"><i class="bi bi-search"></i></button>
+    </div>
+  </div>
+
+  <!-- Grille d’actualités -->
+  <div class="row g-4">
+    <div class="col-md-4 d-flex">
+      <div class="card news-card flex-fill">
+        <img src="images/news1.jpg" class="card-img-top" alt="News 1">
+        <div class="card-body">
+          <h5 class="card-title">Session de formation WYDE à Abidjan</h5>
+          <p class="text-muted small mb-1"><i class="bi bi-calendar"></i> 26 avril 2025</p>
+          <p class="card-text">Une trentaine de jeunes et de femmes venus de Côte d’Ivoire et du Sénégal ont participé à la session de formation WYDE.</p>
+          <a href="actualite-detail.html" class="btn btn-outline-danger btn-sm">Lire plus</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 d-flex">
+      <div class="card news-card flex-fill">
+        <img src="images/news2.jpg" class="card-img-top" alt="News 2">
+        <div class="card-body">
+          <h5 class="card-title">Jeunes leaders – 3e cohorte</h5>
+          <p class="text-muted small mb-1"><i class="bi bi-calendar"></i> 20 avril 2025</p>
+          <p class="card-text">Première session de formation de la troisième cohorte du projet "Jeunes Leaders".</p>
+          <a href="actualite-detail.html" class="btn btn-outline-danger btn-sm">Lire plus</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 d-flex">
+      <div class="card news-card flex-fill">
+        <img src="images/news3.jpg" class="card-img-top" alt="News 3">
+        <div class="card-body">
+          <h5 class="card-title">Cérémonie FEMIN-IN 2025</h5>
+          <p class="text-muted small mb-1"><i class="bi bi-calendar"></i> 5 mars 2025</p>
+          <p class="card-text">Clôture de la cohorte 2024 et lancement de la cohorte 2025 de l’Incubateur Citoyen FEMIN-IN.</p>
+          <a href="actualite-detail.html" class="btn btn-outline-danger btn-sm">Lire plus</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <nav aria-label="Pagination des actualités" class="mt-5">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled"><a class="page-link" href="#">Précédent</a></li>
+      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Suivant</a></li>
+    </ul>
+  </nav>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container py-5">
+    <div class="row">
+
+      <!-- Colonne 1 : Présentation -->
+      <div class="col-md-4 mb-4">
+        <h5>L’Institut</h5>
+        <p>L’IGD est un organisme non gouvernemental burkinabè, spécialisé dans la gouvernance, le droit et le développement.</p>
+      </div>
+
+      <!-- Colonne 2 : Contacts -->
+      <div class="col-md-4 mb-4">
+        <h5>Contact</h5>
+        <p>
+          Cité Azimmo – Ouaga 2000<br>
+          (+226) 25 37 50 82 / 51 57 58 58<br>
+          <a href="mailto:institutgarango@igd.bf">institutgarango@igd.bf</a>
+        </p>
+      </div>
+
+      <!-- Colonne 3 : Carte Google Map -->
+      <div class="col-md-4 mb-4">
+        <h5>Localisation</h5>
+        <div class="footer-map">
+          <iframe
+            src="https://www.google.com/maps?q=Cité%20Azimmo%20Ouaga%202000%20Ouagadougou&output=embed"
+            width="100%"
+            height="200"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <!-- Bas de page -->
+    <div class="row">
+      <div class="col-12 text-center">
+        <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
+        <a href="#"><i class="bi bi-youtube"></i></a>
+
+        <p class="mt-3 mb-0">&copy; 2025 IGD – Tous droits réservés</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Effet navbar au scroll
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Égaliser les hauteurs
+  function equalizeHeights(selector) {
+    const elements = document.querySelectorAll(selector);
+    let max = 0;
+    elements.forEach(el => {
+      el.style.height = "auto";
+      if (el.offsetHeight > max) max = el.offsetHeight;
+    });
+    elements.forEach(el => el.style.height = max + "px");
+  }
+
+  window.addEventListener('load', () => {
+    equalizeHeights('.news-card');
+    equalizeHeights('.inscription .card');
+  });
+  window.addEventListener('resize', () => {
+    equalizeHeights('.news-card');
+    equalizeHeights('.inscription .card');
+  });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const navbar = document.querySelector('.navbar');
+  const navbarHeight = navbar.offsetHeight;
+  document.body.style.paddingTop = navbarHeight + 'px';
+});
+</script>
+
+</body>
+</html>
