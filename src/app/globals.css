@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --igd-red: #E63087;
+  --igd-red-dark: #C41E6D;
+  --igd-green: #7CC242;
+  --igd-green-dark: #5DA126;
+  --igd-ink: #0F172A;
+  --igd-muted: #475569;
+  --igd-surface: #F8FAFC;
+}
+
+@theme inline {
+  --color-igd-red: var(--igd-red);
+  --color-igd-red-dark: var(--igd-red-dark);
+  --color-igd-green: var(--igd-green);
+  --color-igd-green-dark: var(--igd-green-dark);
+  --color-igd-ink: var(--igd-ink);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--igd-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Partners marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
